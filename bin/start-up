@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require './lib/startup_match'
+
+Startup_Match::CLI.new.call
