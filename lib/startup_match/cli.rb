@@ -4,31 +4,34 @@ attr_accessor :name
 
   def call
     puts "Current Top 50 startups"
+    @startups = Startup_Match::Startup.scrape_calcalistech
     list_startups
+    hire_list
     hire_match
     menu
     goodbye
   end
 
   def list_startups
-    @startups = Startup_Match::Startup.topfifty
-    @startups.each.with_index(1) do |startup, i|
-      #puts "#{i}. #{startup_1.name}"
+    @startups.each.with_index(1) do |startup|
+      puts startup.name
     end
   end
 
   def hire_list
-    @hirelist = Startup_Match::Startup.topfifty
-    @hirelist.each.with_index(1) do |hire, i|
+    @hirelist ||= Startup_Match::Startup.scrape_indeed
+    @hirelist.each.with_index(1) do |hire|
+      puts hire
     end
   end
 
   def hire_match
     puts "These companies are hiring"
-    @startups.each do |x|
-      if (@hirelist.include?(x))
-      puts "#{x} "
-      end
+    @intersection = @startups & @hirelist
+    if !@intersection.empty?
+       @intersection.size
+    else
+      puts "No matches found"
     end
   end
 
@@ -39,7 +42,8 @@ attr_accessor :name
       input = gets.strip.downcase
 
       if input.to_i > 0  && input.to_i <=50
-        puts @startups[input.to_i-1]
+        puts @startups[input.to_i - 1].details
+
       elsif input == "list"
         list_startups
       elsif input == "match"
