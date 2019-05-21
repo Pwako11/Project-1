@@ -10,15 +10,15 @@ How to Build a CLI Gem
 8. program.
 
 A command line interface for top startup companies that are also currently hiring.
+The CLI starts with a scrape of top 50 startups.
+User is able to review list of startups and select a specific startup to get more information on company
+user can then enters "match" from menu to find out is starts have listed job postings from indeed.com
 
-user types in top startups.
-
-Gathers a list of top Software as a Solution (SaaS) startups.
+Gathers a list of top 50 startups from.
 
 1. Counterflow ... (Industry=> SaaS, Funding =>,  Investors => )
 2. Carflow ...(Industry=> SaaS, Funding =>,  Investors => )
 3. Tallyfy... (Industry=> SaaS, Funding =>,  Investors => )
-
 
 the program will then search a second site of current startups hiring and look for a match in company name
 and present that to the user.   
